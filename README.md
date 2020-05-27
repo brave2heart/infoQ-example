@@ -1,4 +1,4 @@
-# infoQ-example
+# infoq-example
 
 > A Vue.js project
 
