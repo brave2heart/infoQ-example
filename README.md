@@ -1,4 +1,4 @@
-# vue-common-tools
+# infoQ-example
 
 > A Vue.js project
 
