@@ -6,8 +6,8 @@
       <el-button class="button-send">获取验证码</el-button>
     </div>
     <p>二、Table+Pagination组件实现全选和已选功能</p>
-    <!-- <el-button @click="addDeviceClicked">添加设备</el-button> -->
     <table-select></table-select>
+    <p>三、Tree组件的几种使用场景</p>
   </div>
 </template>
 
