@@ -6,15 +6,18 @@
       <el-button class="button-send">获取验证码</el-button>
     </div>
     <p>二、Table+Pagination组件实现全选和已选功能</p>
-    <el-button @click="addDeviceClicked">添加设备</el-button>
+    <!-- <el-button @click="addDeviceClicked">添加设备</el-button> -->
+    <table-select></table-select>
   </div>
 </template>
 
 <script>
 import SixInputBox from '../../../common/components/SixInputBox.vue'
+import TableSelect from '../../../common/components/TableSelect.vue'
 export default {
   components: {
-    SixInputBox
+    SixInputBox,
+    TableSelect
   },
   methods: {
     addDeviceClicked () {
