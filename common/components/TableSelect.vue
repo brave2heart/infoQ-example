@@ -81,7 +81,9 @@ export default {
           })
         })
       } else {
-        this.$refs.multipleTable.clearSelection()
+        this.$nextTick(() => {
+          this.$refs.multipleTable.clearSelection()
+        })
       }
     },
     handleCurrentChange (value) {

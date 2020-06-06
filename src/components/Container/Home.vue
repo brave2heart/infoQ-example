@@ -8,16 +8,19 @@
     <p>二、Table+Pagination组件实现全选和已选功能</p>
     <table-select></table-select>
     <p>三、Tree组件的几种使用场景</p>
+    <tree-select></tree-select>
   </div>
 </template>
 
 <script>
 import SixInputBox from '../../../common/components/SixInputBox.vue'
 import TableSelect from '../../../common/components/TableSelect.vue'
+import TreeSelect from '../../../common/components/TreeSelect.vue'
 export default {
   components: {
     SixInputBox,
-    TableSelect
+    TableSelect,
+    TreeSelect
   },
   methods: {
     addDeviceClicked () {
