@@ -1,18 +1,18 @@
 <template>
-  <div class="tree-select-wrapper">
-    <div class="head-wrapper">
-      <el-button size="mini"
-                 :type="isStretch?'primary':''"
-                 @click="stretchClicked">{{isStretch?'全部收缩':'全部展开'}}</el-button>
-      <el-button size="mini"
-                 :type="isSelect?'danger':''"
-                 @click="selectClicked">{{isSelect?'清空':'全选'}}</el-button>
-    </div>
+  <div class="tree-radio-wrapper">
     <el-tree ref="tree"
              class="tree-wrapper"
-             :data="treeData"
              node-key="id"
-             show-checkbox>
+             :data="treeData"
+             :default-expand-all="true"
+             @node-click="nodeClicked">
+      <span class="node-wrapper"
+            slot-scope="{node,data}">
+        <span>{{data.label}}</span>
+        <i v-if="node.checked"
+           class="el-icon-check"
+           style="color:#409EFF"></i>
+      </span>
     </el-tree>
   </div>
 </template>
@@ -20,11 +20,15 @@
 export default {
   data () {
     return {
-      isStretch: false,
-      isSelect: false,
+      props: {
+        label: 'label',
+        children: 'children',
+        isLeaf: 'leaf'
+      },
       treeData: [
         {
           label: '一级 1',
+
           children: [
             {
               label: '二级 1-1',
@@ -66,22 +70,9 @@ export default {
     this.setTreeDataNodeId(this.treeData)
   },
   methods: {
-    stretchClicked () {
-      this.isStretch = !this.isStretch
-      // tree为Tree组件的ref值，isexpand为true或false
-      this.$nextTick(() => {
-        for (var i = 0; i < this.$refs.tree.store._getAllNodes().length; i++) {
-          this.$refs.tree.store._getAllNodes()[i].expanded = this.isStretch
-        }
-      })
-    },
-    selectClicked () {
-      this.isSelect = !this.isSelect
-      this.$nextTick(() => {
-        for (var i = 0; i < this.$refs.tree.store._getAllNodes().length; i++) {
-          this.$refs.tree.store._getAllNodes()[i].checked = this.isSelect
-        }
-      })
+    nodeClicked (data, node) {
+      this.$refs.tree.setCheckedKeys([])
+      this.$refs.tree.store.currentNode.checked = true
     },
     // 给tree属性设置id
     setTreeDataNodeId (treeData) {
@@ -90,7 +81,7 @@ export default {
         data.forEach(item => {
           item.id = count
           count = count + 1
-          if (item.children) {
+          if (item.children && item.children.length > 0) {
             traverse(item.children)
           }
         })
@@ -101,7 +92,7 @@ export default {
 }
 </script>
 <style scoped>
-.tree-select-wrapper {
+.tree-radio-wrapper {
   width: 600px;
 }
 .tree-wrapper {
@@ -113,5 +104,11 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+.node-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

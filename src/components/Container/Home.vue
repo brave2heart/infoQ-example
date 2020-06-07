@@ -8,7 +8,12 @@
     <p>二、Table+Pagination组件实现全选和已选功能</p>
     <table-select></table-select>
     <p>三、Tree组件的几种使用场景</p>
+    <p>1、普通模式 + 全部展开/全部收缩 + 全选/清空</p>
     <tree-select></tree-select>
+    <p>2、普通模式 + 单选</p>
+    <tree-radio></tree-radio>
+    <p>3、懒加载 + 单选</p>
+    <tree-lazy-radio></tree-lazy-radio>
   </div>
 </template>
 
@@ -16,11 +21,15 @@
 import SixInputBox from '../../../common/components/SixInputBox.vue'
 import TableSelect from '../../../common/components/TableSelect.vue'
 import TreeSelect from '../../../common/components/TreeSelect.vue'
+import TreeRadio from '../../../common/components/TreeRadio.vue'
+import TreeLazyRadio from '../../../common/components/TreeLazyRadio.vue'
 export default {
   components: {
     SixInputBox,
     TableSelect,
-    TreeSelect
+    TreeSelect,
+    TreeRadio,
+    TreeLazyRadio
   },
   methods: {
     addDeviceClicked () {
