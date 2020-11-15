@@ -12,18 +12,26 @@
                            :type="item.type"
                            :align="item.align"></el-table-column>
         </div>
+        <el-table-column v-for="item in tableHeader"
+                         :key="item"
+                         :label="item.label"
+                         :prop="item.prop"
+                         :width="item.width"
+                         :type="item.type"
+                         :align="item.align"></el-table-column>
         <el-table-column label="操作"
                          align="center"
-                         width="220px">
+                         width="350px">
           <template slot-scope="scope">
-            <div class="operation-wrapper"
-                 v-for="(button,index) in scope.row.buttons"
-                 :key="index">
-              <el-button :size="button.size"
-                         :icon="button.icon"
-                         :disabled="button.disabled"
-                         @click="tableButtonClicked(index,scope.$index, scope.row)">{{button.text}}</el-button>
-            </div>
+            <el-button v-for="(button,index) in scope.row.buttons"
+                       :key="index"
+                       :type="button.type"
+                       :size="button.size"
+                       :icon="button.icon"
+                       :disabled="button.disabled"
+                       @click="tableButtonClicked(index,scope.$index, scope.row)">
+              <span v-if="button.text">{{button.text}}</span>
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -144,9 +152,9 @@ export default {
   margin-left: 22px;
   margin-right: 22px;
 }
-.operation-wrapper .el-button + .el-button {
-  margin-left: 5px !important;
-}
+/* .operation-wrapper .el-button + .el-button {
+    margin-left: 5px !important;
+} */
 .pagination-wrapper {
   display: flex;
   flex-direction: column;

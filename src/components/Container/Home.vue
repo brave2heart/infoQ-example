@@ -73,10 +73,53 @@ export default {
         type: ''
       }
     ]
-    this.tableData.push({
-      'devname': 'Type001',
-      'devid': '01211241252512CAD1235123'
-    })
+    for (let i = 0; i < 1; i++) {
+      this.tableData.push({
+        'devname': 'Type001',
+        'devid': '01211241252512CAD1235123',
+        buttons: [
+          {
+            text: '查看',
+            type: 'primary',
+            size: 'mini',
+            icon: 'el-icon-view'
+          },
+          {
+            text: '编辑',
+            type: 'success',
+            size: 'mini',
+            icon: 'el-icon-edit'
+          },
+          {
+            text: '删除',
+            type: 'danger',
+            size: 'mini',
+            icon: 'el-icon-delete'
+          }
+        ]
+      })
+      this.tableData.push({
+        'devname': 'Type002',
+        'devid': '11111111111111111111111',
+        buttons: [
+          {
+            type: 'primary',
+            size: 'mini',
+            icon: 'el-icon-view'
+          },
+          {
+            type: 'success',
+            size: 'mini',
+            icon: 'el-icon-edit'
+          },
+          {
+            type: 'danger',
+            size: 'mini',
+            icon: 'el-icon-delete'
+          }
+        ]
+      })
+    }
   },
   methods: {
     addDeviceClicked () {
