@@ -16,7 +16,8 @@
     <tree-lazy-radio></tree-lazy-radio>
     <h1>四、ZTablePaginationCtrl组件的基本使用</h1>
     <z-table-pagination-ctrl :tableHeader="tableHeader"
-                             :tableData="tableData"></z-table-pagination-ctrl>
+                             :tableData="tableData"
+                             :allTotal="allTotal"></z-table-pagination-ctrl>
   </div>
 </template>
 
@@ -39,7 +40,8 @@ export default {
   data () {
     return {
       tableHeader: [],
-      tableData: []
+      tableData: [],
+      allTotal: 0
     }
   },
   created () {
@@ -73,32 +75,33 @@ export default {
         type: ''
       }
     ]
-    for (let i = 0; i < 1; i++) {
-      this.tableData.push({
-        'devname': 'Type001',
-        'devid': '01211241252512CAD1235123',
-        buttons: [
-          {
-            text: '查看',
-            type: 'primary',
-            size: 'mini',
-            icon: 'el-icon-view'
-          },
-          {
-            text: '编辑',
-            type: 'success',
-            size: 'mini',
-            icon: 'el-icon-edit'
-          },
-          {
-            text: '删除',
-            type: 'danger',
-            size: 'mini',
-            icon: 'el-icon-delete'
-          }
-        ]
-      })
-      this.tableData.push({
+
+    this.tableData.push({
+      'devname': 'Type001',
+      'devid': '01211241252512CAD1235123',
+      buttons: [
+        {
+          text: '查看',
+          type: 'primary',
+          size: 'mini',
+          icon: 'el-icon-view'
+        },
+        {
+          text: '编辑',
+          type: 'success',
+          size: 'mini',
+          icon: 'el-icon-edit'
+        },
+        {
+          text: '删除',
+          type: 'danger',
+          size: 'mini',
+          icon: 'el-icon-delete'
+        }
+      ]
+    })
+    this.tableData.push(
+      {
         'devname': 'Type002',
         'devid': '11111111111111111111111',
         buttons: [
@@ -118,8 +121,9 @@ export default {
             icon: 'el-icon-delete'
           }
         ]
-      })
-    }
+      }
+    )
+    this.allTotal = this.tableData.length
   },
   methods: {
     addDeviceClicked () {

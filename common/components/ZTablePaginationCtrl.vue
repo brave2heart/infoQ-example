@@ -4,16 +4,16 @@
       <el-table :data="tableList"
                 @selection-change="handleSelectionChange"
                 border>
-        <div v-for="(item,index) in tableHeader"
+        <!-- <div v-for="(item,index) in tableHeader"
              :key="index">
           <el-table-column :label="item.label"
                            :prop="item.prop"
                            :width="item.width"
                            :type="item.type"
                            :align="item.align"></el-table-column>
-        </div>
-        <el-table-column v-for="item in tableHeader"
-                         :key="item"
+        </div> -->
+        <el-table-column v-for="(item,index) in tableHeader"
+                         :key="index"
                          :label="item.label"
                          :prop="item.prop"
                          :width="item.width"
@@ -116,12 +116,11 @@ export default {
     }
   },
   created () {
-    console.log("created -> this.tableData", this.tableData)
     this.initTableList(this.tableData);
+    this.total = this.allTotal
   },
   methods: {
     initTableList (data) {
-      console.log("initTableList -> data", data)
       this.tableList = []
       for (let i = 0; i < data.length; i++) {
         data[i].index = i + 1
