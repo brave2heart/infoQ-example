@@ -1,24 +1,26 @@
 <template>
-  <div class="home-wrapper">
-    <h1>一、使用input标签实现六个格子验证码输入框</h1>
-    <div class="six-input-box">
-      <six-input-box></six-input-box>
-      <el-button class="button-send">获取验证码</el-button>
+    <div class="home-wrapper">
+        <h1>一、使用input标签实现六个格子验证码输入框</h1>
+        <div class="six-input-box">
+            <six-input-box></six-input-box>
+            <el-button class="button-send">获取验证码</el-button>
+        </div>
+        <h1>二、Table+Pagination组件实现全选和已选功能</h1>
+        <table-select></table-select>
+        <h1>三、Tree组件的几种使用场景</h1>
+        <h2>1、普通模式 + 全部展开/全部收缩 + 全选/清空</h2>
+        <tree-select></tree-select>
+        <h2>2、普通模式 + 单选</h2>
+        <tree-radio></tree-radio>
+        <h2>3、懒加载 + 单选</h2>
+        <tree-lazy-radio></tree-lazy-radio>
+        <h1>四、ZTablePaginationCtrl组件的基本使用</h1>
+        <div style="margin:30px">
+            <el-button size="mini" @click="isPaginationClicked">是否显示分页</el-button>
+            <el-button size="mini" @click="isOperationClicked">是否显示操作栏</el-button>
+        </div>
+        <z-table-pagination-ctrl :tableHeader="tableHeader" :tableData="tableData" :allTotal="allTotal" :isPagination="isPagination" :isOperation="isOperation"></z-table-pagination-ctrl>
     </div>
-    <h1>二、Table+Pagination组件实现全选和已选功能</h1>
-    <table-select></table-select>
-    <h1>三、Tree组件的几种使用场景</h1>
-    <h2>1、普通模式 + 全部展开/全部收缩 + 全选/清空</h2>
-    <tree-select></tree-select>
-    <h2>2、普通模式 + 单选</h2>
-    <tree-radio></tree-radio>
-    <h2>3、懒加载 + 单选</h2>
-    <tree-lazy-radio></tree-lazy-radio>
-    <h1>四、ZTablePaginationCtrl组件的基本使用</h1>
-    <z-table-pagination-ctrl :tableHeader="tableHeader"
-                             :tableData="tableData"
-                             :allTotal="allTotal"></z-table-pagination-ctrl>
-  </div>
 </template>
 
 <script>
@@ -41,7 +43,9 @@ export default {
     return {
       tableHeader: [],
       tableData: [],
-      allTotal: 0
+      allTotal: 0,
+      isPagination: true,
+      isOperation: true
     }
   },
   created () {
@@ -127,31 +131,36 @@ export default {
   },
   methods: {
     addDeviceClicked () {
-
+    },
+    isPaginationClicked () {
+      this.isPagination = !this.isPagination
+    },
+    isOperationClicked () {
+      this.isOperation = !this.isOperation
     }
   }
 }
 </script>
 <style>
 .home-wrapper {
-  margin-left: 30px;
+    margin-left: 30px;
+    height: 100vh;
 }
 .six-input-box {
-  display: flex;
-  flex-direction: row;
-  height: 50px;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
 }
 .button-send {
-  margin-left: 20px;
+    margin-left: 20px;
 }
 .el-header {
-  background-color: #b3c0d1;
-  color: #333;
-  line-height: 60px;
+    background-color: #b3c0d1;
+    color: #333;
+    line-height: 60px;
 }
-
 .el-aside {
-  position: absolute;
-  color: #333;
+    position: absolute;
+    color: #333;
 }
 </style>
