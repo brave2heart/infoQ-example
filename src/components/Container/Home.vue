@@ -5,16 +5,22 @@
             <six-input-box></six-input-box>
             <el-button class="button-send">获取验证码</el-button>
         </div>
-        <h1>二、Table+Pagination组件实现全选和已选功能</h1>
+        <h1>二、Element UI Select下拉框滚动加载更多实现</h1>
+        <p>下拉框滚动到底部，在console打印select load more data...</p>
+        <el-select v-model="value" placeholder="请选择" v-loadmore="loadMore">
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+        </el-select>
+        <h1>三、Table+Pagination组件实现全选和已选功能</h1>
         <table-select></table-select>
-        <h1>三、Tree组件的几种使用场景</h1>
+        <h1>四、Tree组件的几种使用场景</h1>
         <h2>1、普通模式 + 全部展开/全部收缩 + 全选/清空</h2>
         <tree-select></tree-select>
         <h2>2、普通模式 + 单选</h2>
         <tree-radio></tree-radio>
         <h2>3、懒加载 + 单选</h2>
         <tree-lazy-radio></tree-lazy-radio>
-        <h1>四、ZTablePaginationCtrl组件的基本使用</h1>
+        <h1>五、ZTablePaginationCtrl组件的基本使用</h1>
         <div style="margin:30px">
             <el-button size="mini" @click="isPaginationClicked">是否显示分页</el-button>
             <el-button size="mini" @click="isOperationClicked">是否显示操作栏</el-button>
@@ -45,7 +51,33 @@ export default {
       tableData: [],
       allTotal: 0,
       isPagination: true,
-      isOperation: true
+      isOperation: true,
+      options: [{
+        value: '选项1',
+        label: '黄金糕'
+      }, {
+        value: '选项2',
+        label: '双皮奶'
+      }, {
+        value: '选项3',
+        label: '蚵仔煎'
+      }, {
+        value: '选项4',
+        label: '龙须面'
+      }, {
+        value: '选项5',
+        label: '北京烤鸭'
+      }, {
+        value: '选项6',
+        label: '黄金糕'
+      }, {
+        value: '选项7',
+        label: '双皮奶'
+      }, {
+        value: '选项8',
+        label: '蚵仔煎'
+      }],
+      value: ''
     }
   },
   created () {
@@ -130,6 +162,9 @@ export default {
     this.allTotal = this.tableData.length
   },
   methods: {
+    loadMore () {
+      console.log('select load more data...')
+    },
     addDeviceClicked () {
     },
     isPaginationClicked () {
